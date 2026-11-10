@@ -59,10 +59,12 @@ Logistic Regression was selected as the best-performing model based on the evalu
 
 The project uses the Cleveland Heart Disease dataset from the UCI Machine Learning Repository.
 
-- Dataset size: 303 records
-- Input features: 13
-- Target: Binary classification
-- Original target values are converted into two classes: 0 (no heart disease) and 1 (heart disease present).
+- **Dataset size:** 303 records
+- **Input features:** 13
+- **Target:** Binary classification
+- Original target values are converted into two classes:
+  - 0: No heart disease
+  - 1: Heart disease present
 
 ## Project Structure
 
@@ -160,13 +162,7 @@ python test_model.py
 python model_metadata.py
 ```
 
-### 10. Run Model Monitoring
-
-```bash
-python monitor_model.py
-```
-
-### 11. Start the Flask Application
+### 10. Start the Flask Application
 
 ```bash
 python app.py
@@ -176,9 +172,17 @@ Open the following address in your browser:
 
 http://127.0.0.1:5000
 
+### 11. Run Model Monitoring
+
+After starting the application and generating prediction records, open another terminal with the virtual environment activated and run:
+
+```bash
+python monitor_model.py
+```
+
 ## REST API
 
-CardioRisk also provides a REST API endpoint:
+CardioRisk also provides a REST API endpoint.
 
 **Endpoint:** `POST /api/predict`
 
@@ -208,6 +212,10 @@ The project demonstrates several MLOps practices:
 The CardioRisk web application is deployed on Render using Docker.
 
 **Live Application:** https://cardiorisk-h35z.onrender.com/
+
+### Storage Limitation
+
+The application uses SQLite on Render's free hosting plan. Since persistent disks are not available on this plan, database records may be lost when the service restarts or is redeployed.
 
 ## Disclaimer
 
