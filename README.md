@@ -8,6 +8,11 @@ The platform allows users to register, log in, enter health-related details and 
 
 This project is developed for academic and educational purposes. It is not a medical diagnostic system.
 
+## Project Links
+
+- **GitHub Repository:** https://github.com/shivanisingh2812006-spec/CardioRisk
+- **Live Demo:** https://cardiorisk-h35z.onrender.com/
+
 ## Key Features
 
 - User registration and secure login.
@@ -20,24 +25,21 @@ This project is developed for academic and educational purposes. It is not a med
 - Downloadable PDF prediction reports.
 - Model metadata and version tracking.
 - Basic model monitoring and automated testing.
+- Docker-based application deployment.
 
 ## Technologies Used
 
-**Programming Language:** Python
-
-**Machine Learning:** Pandas, NumPy, Scikit-learn, SHAP
-
-**Web Framework:** Flask
-
-**Database:** SQLite, Flask-SQLAlchemy
-
-**Visualisation:** Matplotlib
-
-**Model Storage:** Joblib
-
-**Report Generation:** ReportLab
-
-**Frontend:** HTML, CSS, Bootstrap
+- **Programming Language:** Python
+- **Machine Learning:** Pandas, NumPy, Scikit-learn, SHAP
+- **Web Framework:** Flask
+- **Database:** SQLite, Flask-SQLAlchemy
+- **Visualisation:** Matplotlib
+- **Model Storage:** Joblib
+- **Report Generation:** ReportLab
+- **Frontend:** HTML, CSS, Bootstrap
+- **Containerisation:** Docker
+- **Deployment:** Render
+- **Version Control:** Git and GitHub
 
 ## Machine Learning Algorithms
 
@@ -50,6 +52,8 @@ The project compares the following five algorithms:
 5. K-Nearest Neighbours (KNN)
 
 The models are evaluated using accuracy, precision, recall, F1-score and ROC-AUC. Cross-validation ROC-AUC is used for model selection.
+
+Logistic Regression was selected as the best-performing model based on the evaluation process.
 
 ## Dataset
 
@@ -91,25 +95,28 @@ CardioRisk/
 ├── test_model.py
 ├── monitor_model.py
 ├── requirements.txt
+├── Dockerfile
+├── .dockerignore
+├── .gitignore
 └── README.md
 ```
 
 ## Installation and Setup
 
-### 1. Clone the repository
+### 1. Clone the Repository
 
 ```bash
-git clone YOUR_GITHUB_REPOSITORY_LINK
+git clone https://github.com/shivanisingh2812006-spec/CardioRisk.git
 cd CardioRisk
 ```
 
-### 2. Create a virtual environment
+### 2. Create a Virtual Environment
 
 ```bash
 python -m venv venv
 ```
 
-### 3. Activate the virtual environment
+### 3. Activate the Virtual Environment
 
 For Windows PowerShell:
 
@@ -117,49 +124,49 @@ For Windows PowerShell:
 .\venv\Scripts\Activate.ps1
 ```
 
-### 4. Install dependencies
+### 4. Install Dependencies
 
 ```bash
 python -m pip install -r requirements.txt
 ```
 
-### 5. Download the dataset
+### 5. Download the Dataset
 
 ```bash
 python download_dataset.py
 ```
 
-### 6. Train the machine learning model
+### 6. Train the Machine Learning Model
 
 ```bash
 python train_model.py
 ```
 
-### 7. Generate SHAP explanations
+### 7. Generate SHAP Explanations
 
 ```bash
 python explain_model.py
 ```
 
-### 8. Run model tests
+### 8. Run Model Tests
 
 ```bash
 python test_model.py
 ```
 
-### 9. Generate model metadata
+### 9. Generate Model Metadata
 
 ```bash
 python model_metadata.py
 ```
 
-### 10. Run model monitoring
+### 10. Run Model Monitoring
 
 ```bash
 python monitor_model.py
 ```
 
-### 11. Start the Flask application
+### 11. Start the Flask Application
 
 ```bash
 python app.py
@@ -173,9 +180,14 @@ http://127.0.0.1:5000
 
 CardioRisk also provides a REST API endpoint:
 
-`POST /api/predict`
+**Endpoint:** `POST /api/predict`
 
-The endpoint accepts the 13 clinical input features in JSON format and returns a model prediction, estimated probability and an educational category.
+The endpoint accepts the 13 clinical input features in JSON format and returns:
+
+- Model prediction
+- Model-estimated probability
+- Prediction category
+- Educational disclaimer message
 
 ## MLOps Components
 
@@ -189,6 +201,13 @@ The project demonstrates several MLOps practices:
 - SHAP-based model explainability.
 - REST API deployment interface.
 - Basic prediction monitoring.
+- Docker-based deployment.
+
+## Deployment
+
+The CardioRisk web application is deployed on Render using Docker.
+
+**Live Application:** https://cardiorisk-h35z.onrender.com/
 
 ## Disclaimer
 
@@ -196,8 +215,7 @@ CardioRisk is an academic machine learning project. Its predictions and probabil
 
 ## Developed For
 
-Academic Mini Project – Computer Science and Engineering
+**Academic Mini Project – Computer Science and Engineering**
 
-**Project Name:** CardioRisk
-
-**University:** Chandigarh University
+- **Project Name:** CardioRisk
+- **University:** Chandigarh University
