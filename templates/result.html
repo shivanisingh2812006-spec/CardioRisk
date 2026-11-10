@@ -1,0 +1,124 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+    <div class="card shadow p-4">
+        <h2 class="text-center mb-3">Prediction Result</h2>
+
+        <p class="text-center text-muted">
+            CardioRisk Machine Learning Analysis
+        </p>
+
+        <hr>
+
+        <div class="text-center mb-4">
+            <h5>Model Prediction</h5>
+
+            {% if prediction == 1 %}
+                <h3 class="text-danger">Positive Class (1)</h3>
+                <p>The model predicts the positive heart disease class.</p>
+            {% else %}
+                <h3 class="text-success">Negative Class (0)</h3>
+                <p>The model predicts the negative heart disease class.</p>
+            {% endif %}
+        </div>
+
+        <div class="text-center mb-4">
+            <h5>Model-Estimated Probability</h5>
+            <h2>{{ "%.2f"|format(probability * 100) }}%</h2>
+            <p class="text-muted">
+                Probability of the dataset's positive class
+            </p>
+        </div>
+
+        <div class="alert alert-info text-center">
+            <strong>Likelihood Category:</strong> {{ category }}
+            <br>
+            These categories are illustrative, not clinical thresholds.
+        </div>
+
+        <h4 class="mt-4">Individual SHAP Explanation</h4>
+
+        <p class="text-muted">
+            The following features influenced this individual model prediction.
+            Positive contributions push towards class 1, while negative
+            contributions push towards class 0.
+        </p>
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Feature</th>
+                        <th>Entered Value</th>
+                        <th>SHAP Contribution</th>
+                        <th>Direction</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in explanations %}
+                    <tr>
+                        <td>{{ item.feature }}</td>
+                        <td>{{ item.value }}</td>
+                        <td>
+                            {{ "%.3f"|format(item.contribution * 100) }}
+                        </td>
+                        <td>{{ item.direction }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <h5 class="mt-4">Entered Details</h5>
+
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Entered Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for key, value in values.items() %}
+                    <tr>
+                        <td>{{ labels[key] }}</td>
+                        <td>{{ value }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="text-center mt-3">
+            <a href="{{ url_for('report', record_id=record_id) }}"
+               class="btn btn-primary">
+                Download PDF Report
+            </a>
+
+            <a href="{{ url_for('history') }}"
+               class="btn btn-outline-secondary">
+                View History
+            </a>
+
+            <a href="{{ url_for('dashboard') }}"
+               class="btn btn-outline-dark">
+                Dashboard
+            </a>
+        </div>
+
+        <hr>
+
+        <p class="text-muted small text-center">
+            Disclaimer: CardioRisk is an academic machine learning project.
+            Its output is not a medical diagnosis or a clinically validated
+            assessment. Consult a qualified healthcare professional for
+            medical advice.
+        </p>
+    </div>
+</div>
+
+{% endblock %}

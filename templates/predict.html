@@ -1,0 +1,142 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="custom-card">
+
+    <h2 class="text-center mb-2">❤️ Heart Disease Prediction</h2>
+    <p class="text-center text-muted mb-4">
+        Enter the 13 clinical attributes below.
+    </p>
+
+    <form method="POST" action="/predict">
+
+        <div class="row g-3">
+
+            <div class="col-md-6">
+                <label class="form-label">Age (years)</label>
+                <input type="number" name="age" class="form-control"
+                       min="1" max="120" required>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Sex</label>
+                <select name="sex" class="form-select" required>
+                    <option value="">Select</option>
+                    <option value="1">Male</option>
+                    <option value="0">Female</option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Chest Pain Type</label>
+                <select name="cp" class="form-select" required>
+                    <option value="">Select</option>
+                    <option value="1">1 - Typical angina</option>
+                    <option value="2">2 - Atypical angina</option>
+                    <option value="3">3 - Non-anginal pain</option>
+                    <option value="4">4 - Asymptomatic</option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Resting Blood Pressure (mm Hg)</label>
+                <input type="number" name="trestbps" class="form-control"
+                       min="50" max="300" required>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Serum Cholesterol (mg/dl)</label>
+                <input type="number" name="chol" class="form-control"
+                       min="50" max="700" required>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Fasting Blood Sugar</label>
+                <select name="fbs" class="form-select" required>
+                    <option value="">Select</option>
+                    <option value="1">Greater than 120 mg/dl</option>
+                    <option value="0">Less than or equal to 120 mg/dl</option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Resting ECG</label>
+                <select name="restecg" class="form-select" required>
+                    <option value="">Select</option>
+                    <option value="0">0 - Normal</option>
+                    <option value="1">1 - ST-T wave abnormality</option>
+                    <option value="2">2 - Left ventricular hypertrophy</option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Maximum Heart Rate Achieved</label>
+                <input type="number" name="thalach" class="form-control"
+                       min="40" max="250" required>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Exercise-Induced Angina</label>
+                <select name="exang" class="form-select" required>
+                    <option value="">Select</option>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">ST Depression (Oldpeak)</label>
+                <input type="number" name="oldpeak" class="form-control"
+                       min="0" max="10" step="0.1" required>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Slope of Peak Exercise ST Segment</label>
+                <select name="slope" class="form-select" required>
+                    <option value="">Select</option>
+                    <option value="0">0 - Upsloping</option>
+                    <option value="1">1 - Flat</option>
+                    <option value="2">2 - Downsloping</option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Number of Major Vessels (0-3)</label>
+                <select name="ca" class="form-select" required>
+                    <option value="">Select</option>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Thalassemia Category</label>
+                <select name="thal" class="form-select" required>
+                    <option value="">Select</option>
+                    <option value="3">3 - Normal</option>
+                    <option value="6">6 - Fixed defect</option>
+                    <option value="7">7 - Reversible defect</option>
+                </select>
+            </div>
+
+        </div>
+
+        <div class="alert alert-info mt-4">
+            Please enter values from reliable clinical records.
+            This form is for educational demonstration and not
+            a substitute for medical assessment.
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg w-100 mt-2">
+            Generate Prediction
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}
